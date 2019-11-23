@@ -14,14 +14,16 @@ console.log (Peter_money > Jim_money);
 // TASK 2
 
 var John_age = 38;
-var Mike_age = (38+8)/2 -8;
+var After_years = 8;
+var Mike_age = (38 + After_years)/2 - After_years;
 console.log("Mike is " + Mike_age + " years old.");
 
 // TASK 3
 
 var firs_flock = 78;
 var second_flock = 57;
-firs_flock -= 12;
-second_flock += 12;
+var moved_birds = 12;
+firs_flock -= moved_birds;
+second_flock += moved_birds;
 second_flock -= 4;
 console.log(firs_flock >= second_flock);
