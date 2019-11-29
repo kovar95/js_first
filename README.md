@@ -1,2 +1,2 @@
 # js_first
-First JS homework
+JS homeworks
