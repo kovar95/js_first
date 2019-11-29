@@ -1,0 +1,18 @@
+body {
+    background: linear-gradient(#2193b0, #6dd5ed);
+    background-repeat: no-repeat;
+    margin: 40px auto;
+    height: 500px;
+    width: 50%;
+}
+
+h1 {
+	width: 70%;
+    margin: 20px auto;
+    font-size: 45px;
+    text-shadow: 2px 2px 5px white;
+    text-align: center;
+    box-shadow: 1px 1px 15px #363333;
+    border-radius: 15px;
+    padding: 63px;
+}
