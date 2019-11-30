@@ -1,70 +1,114 @@
 
 // TASK 1
+console.log("TASK 1");
 
-var firstNumber = 15;
-var secondNumber = -2;
-var thirdNumber = 22;
-var fourthNumber = 0;
-var fifthNumber = 13;
+var dataOld = [34, true, "Peter", 1992];
+var dataNew = [];
 
-var theLargestNumber = firstNumber;
-
-if (secondNumber > theLargestNumber) {
-	theLargestNumber = secondNumber;
+for (var i = 0; i < dataOld.length; i++) {
+	dataNew[i] = dataOld[i];
 }
 
-if (thirdNumber > theLargestNumber) {
-	theLargestNumber = thirdNumber;
-}
-
-if (fourthNumber > theLargestNumber) {
-	theLargestNumber = fourthNumber;
-}
-
-if (fifthNumber > theLargestNumber) {
-	theLargestNumber = fifthNumber;
-}
-
-console.log("The largest of five numbers is number "  + theLargestNumber);
+console.log(dataNew);
 
 // TASK 2
+console.log("TASK 2");
 
-var multiplierOne = 3;
-var multiplierTwo = -7;
-var multiplierThree = 2;
+var dataOld = [34, true, "Peter", 1992];
+var dataNew = [];
 
-var product = multiplierOne * multiplierTwo * multiplierThree;
+for (var i = dataOld.length -1 ; i >= 0; i--) {
+	dataNew[dataOld.length -1 - i] = dataOld[i];
+}
 
-if (product > 0 ) {
-	console.log("Product is positive");
-} else if (product < 0) {
-	console.log("Product is negative");
-} else console.log("Product is zero");
+console.log(dataNew);
 
 // TASK 3
+console.log("TASK 3");
 
-var x = 1;
+var dataOld = [34, true, "Peter", 1992];
+var dataNew = [12, "Jack"];
+var newLength = dataNew.length;
+var extendedLenght = dataOld.length + dataNew.length;
 
-switch(x) {
-	case 1: console.log("Hello World");
-	case 2: console.log("Cao Svete");
-	case 3: console.log("Ciao il Mundo");
-	case 4: console.log("Hola el Mundo");
-	case 5: console.log("Salut le Monde");
+for (var i = newLength; i < extendedLenght ; i++) {
+	dataNew[i] = dataOld[i - newLength];
 }
+
+console.log(dataNew);
+
+// Razlog zasto nisam koristio vrednsti za duzinu nizova direkto u petlji je zato
+// sto bi se kroz petlju ta vrednost menjala i nastala bi beskonacna petlja
 
 // TASK 4
+console.log("TASK 4");
 
-var userAge = 25;
+var a = [12, 56, 32, 44, 69];
+var b = [88, 7, 13];
+var aLength = a.length;
+var extendedLenght = a.length + b.length;
 
-var statement;
-
-userAge >= 28 ? statement = true : statement = false;
-
-if (!statement) {
-	console.log("User is less than 28 years old");
-} else if (userAge > 28) {
-	console.log("User is older than 28");
-} else {
-	console.log("User is 28");
+for (var i = aLength; i < extendedLenght ; i++) {
+	a[i] = b[i - aLength];
 }
+
+console.log(a);
+
+// TASK 5
+console.log("TASK 5");
+
+var a = [12, 56, 32, 44];
+var b = [88, 7, 13];
+var c = [];
+
+var cLength = a.length + b.length;
+var j = 0;
+var k = 0;
+
+for (var i = 0; i < cLength; i++) {
+	if (i % 2 === 0) {
+		c[i] = a[j];
+		j++;
+	} else {
+		c[i] = b[k];
+		k++;
+	}
+}
+
+console.log(c);
+
+// TASK 6
+console.log("TASK 6");
+
+var niz = ["*"];
+
+for (var i = 0; i < 6; i++) {
+	console.log(niz[0]);
+	niz[0] += "*";
+}
+
+// TASK 7
+console.log("TASK 7");
+
+var niz1 = ["*", "*"];
+
+for (var i = 0; i < 10; i++) {
+	niz1[0] += "*";
+}
+
+for (var i = 1; i < 10; i++) {
+	niz1[1] += " ";
+}
+niz1[1] += "*";
+
+console.log(niz1[0])
+console.log(niz1[1]);
+console.log(niz1[1]);
+console.log(niz1[1]);
+console.log(niz1[1]);
+console.log(niz1[0]);
+
+// Ovo prikazivanje na kraju je moglo u for petlji, medjutim, meni u browser-u
+// prikaze samo jedan niz1[1] i pored broj 4, kao da se 4 puta ponavlja isto, 
+// i zato se pattern ne ispisuje kako treba da izgleda
+
