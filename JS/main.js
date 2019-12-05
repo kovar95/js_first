@@ -1,114 +1,251 @@
 
+// Fourth homework
+console.log("Fourth homework");
+
 // TASK 1
 console.log("TASK 1");
 
-var dataOld = [34, true, "Peter", 1992];
-var dataNew = [];
-
-for (var i = 0; i < dataOld.length; i++) {
-	dataNew[i] = dataOld[i];
+var reverseArray = function(normalArray) {
+	/* check if array has elements */
+	if(normalArray.length) {  	
+		/* check if array has one element - no need for going throught loop */
+		if (normalArray.length === 1) { 
+			console.log("This array has only one element");
+		} else {
+			var reversedArray = [];
+			for (var i = 0; i < normalArray.length; i++) {
+				reversedArray[i] = normalArray[normalArray.length -1 - i];
+			};
+			return reversedArray;
+		}	
+	} else {
+		console.log("This array has no elements");
+	}	
 }
 
-console.log(dataNew);
+var myArray = [33, 11, 56, 78, 23];
+var someReversedArray = reverseArray(myArray);
+console.log("The reversed array:");
+console.log(someReversedArray);
 
 // TASK 2
-console.log("TASK 2");
+console.log("TASK 2")
 
-var dataOld = [34, true, "Peter", 1992];
-var dataNew = [];
+var printType = function(something) {
+	console.log("This element is " + typeof something);
+};
 
-for (var i = dataOld.length -1 ; i >= 0; i--) {
-	dataNew[dataOld.length -1 - i] = dataOld[i];
-}
-
-console.log(dataNew);
+printType(myArray);
+printType(33);
+printType("Peter");
 
 // TASK 3
 console.log("TASK 3");
 
-var dataOld = [34, true, "Peter", 1992];
-var dataNew = [12, "Jack"];
-var newLength = dataNew.length;
-var extendedLenght = dataOld.length + dataNew.length;
+var theLongest = function(someStringArray) {
+	if (someStringArray.length) {
+		var theLongestString = someStringArray[0].length;
+		for (var i = 1; i < someStringArray.length; i++) {
+			if (someStringArray[i].length > theLongestString) {
+				theLongestString = someStringArray[i].length;
+			};
+		};
+		return theLongestString;
+	} else {
+		console.log("This array has no elements");
+	}	
+};
 
-for (var i = newLength; i < extendedLenght ; i++) {
-	dataNew[i] = dataOld[i - newLength];
-}
-
-console.log(dataNew);
-
-// Razlog zasto nisam koristio vrednsti za duzinu nizova direkto u petlji je zato
-// sto bi se kroz petlju ta vrednost menjala i nastala bi beskonacna petlja
+var stringArray = ["John", "Leo", "Peter", "Jonatan", "Tom", "Alex"];
+var theLongestInArray = theLongest(stringArray);
+console.log("The longest string in array has " + theLongestInArray + " characters.");
 
 // TASK 4
-console.log("TASK 4");
+console.log("TASK 4")
 
-var a = [12, 56, 32, 44, 69];
-var b = [88, 7, 13];
-var aLength = a.length;
-var extendedLenght = a.length + b.length;
+var numberArray = [33,12,44,56,21,46,3,5,11];
 
-for (var i = aLength; i < extendedLenght ; i++) {
-	a[i] = b[i - aLength];
+// method 1 - I've made two separate functions and merged into one main
+console.log("method 1");
+
+var secondGreatest = function(someNumberArray){
+	if(someNumberArray.length > 1){
+		var first,second;
+		first = second = someNumberArray[0];
+		for (var i = 0; i < someNumberArray.length; i++) {
+			if (someNumberArray[i] > first) {
+				second = first;
+				first = someNumberArray[i];
+			} else if (someNumberArray[i] > second && someNumberArray[i] !== first) {
+				second = someNumberArray[i];
+			}
+		}
+		console.log("The second greatest number in array is " + second);
+	} else {
+		console.log("This array has less than two elements");
+	}
+	
 }
 
-console.log(a);
+var secondLowest = function(someNumberArray){
+	if(someNumberArray.length > 1){
+		var first,second;
+		first = second = someNumberArray[0];
+		for (var i = 0; i < someNumberArray.length; i++) {
+			if (someNumberArray[i] < first) {
+				second = first;
+				first = someNumberArray[i];
+			} else if (someNumberArray[i] < second && someNumberArray[i] !== first) {
+				second = someNumberArray[i];
+			}
+		}
+		console.log("The second lowest number in array is " + second);	
+	} else {
+		console.log("This array has less than two elements");
+	}	
+}
+
+var secondNumbers = function(someNumberArray) {
+	secondGreatest(someNumberArray);
+	secondLowest(someNumberArray);
+}
+
+secondNumbers(numberArray);
+
+// method 2 - more simple but more iterations
+console.log("method 2");
+
+var mySecondNumbers = function(someArray){
+	/* making new array that has elements like received array */
+	if (someArray.length > 1) {  
+		var myNewArray = [];
+		for (var i = 0; i < someArray.length; i++) {
+			myNewArray[i] = someArray[i];
+		}
+		/* simply sorting array */
+		for (var i = 0; i < myNewArray.length; i++) {  
+			for (var j = 0; j < myNewArray.length - 1; j++) {
+				if (myNewArray[j] > myNewArray[j + 1]) {
+					var temp = myNewArray[j + 1];
+					myNewArray[j + 1] = myNewArray[j];
+					myNewArray[j] = temp;
+				}
+			}
+		} 
+		/* and console.log the second greatest and the second lowest */  
+		console.log("The second greatest number is " + myNewArray[myNewArray.length - 2]);
+		console.log("The second lowest number is " + myNewArray[1]);	
+	}	
+}
+
+mySecondNumbers(numberArray);
 
 // TASK 5
 console.log("TASK 5");
 
-var a = [12, 56, 32, 44];
-var b = [88, 7, 13];
-var c = [];
-
-var cLength = a.length + b.length;
-var j = 0;
-var k = 0;
-
-for (var i = 0; i < cLength; i++) {
-	if (i % 2 === 0) {
-		c[i] = a[j];
-		j++;
-	} else {
-		c[i] = b[k];
-		k++;
+var bigger = function(someArray, someNumber) {
+	if (someArray.length) {
+		var j = 0;
+		var biggerArray = [];
+		for (var i = 0; i < someArray.length; i++) {
+			if (someArray[i] > someNumber) {
+				biggerArray[j] = someArray[i];
+				j++;
+			}
+		}
+		console.log("New array is:")
+		console.log(biggerArray);	
 	}
 }
 
-console.log(c);
-
-// TASK 6
-console.log("TASK 6");
-
-var niz = ["*"];
-
-for (var i = 0; i < 6; i++) {
-	console.log(niz[0]);
-	niz[0] += "*";
+var biggerThen = function(someArray, someNumber){
+	bigger(someArray, someNumber);
 }
 
-// TASK 7
-console.log("TASK 7");
+var myNumber = 15;
 
-var niz1 = ["*", "*"];
+biggerThen(numberArray, myNumber);
 
-for (var i = 0; i < 10; i++) {
-	niz1[0] += "*";
-}
+// // TASK 6
+// console.log("TASK 6")
 
-for (var i = 1; i < 10; i++) {
-	niz1[1] += " ";
-}
-niz1[1] += "*";
+// var theLowestNumberInArray = function(someArray) {
+// 	var theLowest = someArray[0];
+// 	for (var i = 0; i < someArray.length; i++) {
+// 		if (someArray[i] < theLowest) {
+// 			theLowest = someArray[i];
+// 		} 
+// 	}
+// 	return theLowest;
+// }
 
-console.log(niz1[0])
-console.log(niz1[1]);
-console.log(niz1[1]);
-console.log(niz1[1]);
-console.log(niz1[1]);
-console.log(niz1[0]);
+// var theHighestNumberInArray = function(someArray) {
+// 	var theHighest = someArray[0];
+// 	for (var i = 0; i < someArray.length; i++) {
+// 		if (someArray[i] > theHighest) {
+// 			theHighest = someArray[i];
+// 		} 
+// 	}
+// 	return theHighest;
+// }
 
-// Ovo prikazivanje na kraju je moglo u for petlji, medjutim, meni u browser-u
-// prikaze samo jedan niz1[1] i pored broj 4, kao da se 4 puta ponavlja isto, 
-// i zato se pattern ne ispisuje kako treba da izgleda
+// var multipleHighestAndLowest = function(someArray) {
+// 	var theHighest = theHighestNumberInArray(someArray);
+// 	var theLowest = theLowestNumberInArray(someArray);
+// 	var multipleNumbers = theHighest * theLowest;
+// 	console.log("The product of highest and lowest number is: " + multipleNumbers);
+// }
 
+// multipleHighestAndLowest(numberArray);
+
+// // TASK 7
+// console.log("TASK 7");
+
+// var arrayOfNumbers = [15,35,46,23,15,17,23,24,35,12,72,64,35,22,64];
+
+// // in the main function i will already sort the array i ascending order so the biggest will be the last
+// var deleteBiggest = function(someUniqueArray){
+// 	someUniqueArray.length = someUniqueArray.length - 1;
+// }
+
+// var findUnique = function(someArray, someFunction){
+// 		if (someArray.length > 1) {
+// 			var myNewArray = [];
+// 			var finalArray = [];
+
+// 			/* copying elements in new array */
+// 			for (var i = 0; i < someArray.length; i++) { 
+// 				myNewArray[i] = someArray[i];
+// 			}
+
+// 			/* sorting array */
+// 			for (var i = 0; i < myNewArray.length; i++) { 
+// 				for (var j = 0; j < myNewArray.length - 1; j++) {
+// 					if (myNewArray[j] > myNewArray[j + 1]) {
+// 						var temp = myNewArray[j + 1];
+// 						myNewArray[j + 1] = myNewArray[j];
+// 						myNewArray[j] = temp;
+// 					}
+// 				}
+// 			}
+// 			console.log("Ordered array ");	
+// 			console.log(myNewArray);
+
+// 			/* creating array of unique elements */
+// 			var k = 0;	        
+// 			for (var i = 0; i < myNewArray.length; i++) {
+// 				if (myNewArray[i] !== myNewArray[i - 1] && myNewArray[i] !== myNewArray[i + 1]) {
+// 					finalArray[k] = myNewArray[i];
+// 					k++;
+// 				}
+// 			}
+// 			console.log("Uniqe elements: ");
+// 			console.log(finalArray);
+
+// 			someFunction(finalArray);
+// 			console.log("Deleted biggest: ");
+// 			console.log(finalArray);
+// 	}	
+// }
+
+// findUnique(arrayOfNumbers, deleteBiggest);
