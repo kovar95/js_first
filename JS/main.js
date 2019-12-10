@@ -205,6 +205,34 @@ console.log("TASK 7");
 
 var arrayOfNumbers = [15,35,46,23,15,17,23,24,35,12,72,64,35,22,64];
 
+var copyElements = function(someArray, newArray){
+	for (var i = 0; i < someArray.length; i++) { 
+		newArray[i] = someArray[i];
+	}
+}
+
+var sortElements = function(someArray){
+	for (var i = 0; i < someArray.length; i++) { 
+		for (var j = 0; j < someArray.length - 1; j++) {
+			if (someArray[j] > someArray[j + 1]) {
+				var temp = someArray[j + 1];
+				someArray[j + 1] = someArray[j];
+				someArray[j] = temp;
+			}
+		}
+	}
+}
+
+var uniqueArray = function(someArray, onlyUniqueElementsArray){ 
+	var k = 0;	        
+	for (var i = 0; i < someArray.length; i++) {
+		if (someArray[i] !== someArray[i - 1] && someArray[i] !== someArray[i + 1]) {
+			onlyUniqueElementsArray[k] = someArray[i];
+			k++;
+		}
+	}
+}
+
 // in the main function i will already sort the array in ascending order so the biggest will be the last
 var deleteBiggest = function(someUniqueArray){
 	someUniqueArray.length = someUniqueArray.length - 1;
@@ -216,31 +244,19 @@ var findUnique = function(someArray, someFunction){
 			var finalArray = [];
 
 			/* copying elements in new array */
-			for (var i = 0; i < someArray.length; i++) { 
-				myNewArray[i] = someArray[i];
-			}
+
+			copyElements(someArray, myNewArray);
 
 			/* sorting array */
-			for (var i = 0; i < myNewArray.length; i++) { 
-				for (var j = 0; j < myNewArray.length - 1; j++) {
-					if (myNewArray[j] > myNewArray[j + 1]) {
-						var temp = myNewArray[j + 1];
-						myNewArray[j + 1] = myNewArray[j];
-						myNewArray[j] = temp;
-					}
-				}
-			}
+
+			sortElements(myNewArray);
 			console.log("Ordered array ");	
 			console.log(myNewArray);
 
 			/* creating array of unique elements */
-			var k = 0;	        
-			for (var i = 0; i < myNewArray.length; i++) {
-				if (myNewArray[i] !== myNewArray[i - 1] && myNewArray[i] !== myNewArray[i + 1]) {
-					finalArray[k] = myNewArray[i];
-					k++;
-				}
-			}
+			
+			uniqueArray(myNewArray, finalArray);
+		
 			console.log("Uniqe elements: ");
 			console.log(finalArray);
 
