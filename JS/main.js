@@ -1,269 +1,157 @@
+// TASK 1
+console.log("TASK 1");
 
-// // Fourth homework
-// console.log("Fourth homework");
+var person = {
+	name: "Mike",
+	age: 28,
+	married: true
+}
 
-// // TASK 1
-// console.log("TASK 1");
+var transformObject = function(someObject){
+	someObject.age = 34;
+	delete someObject.married;
+	console.log(someObject);
+}
 
-// var reverseArray = function(normalArray) {
-// 	/* check if array has elements */
-// 	if(normalArray.length) {  	
-// 		/* check if array has one element - no need for going throught loop */
-// 		if (normalArray.length === 1) { 
-// 			console.log("This array has only one element");
-// 		} else {
-// 			var reversedArray = [];
-// 			for (var i = 0; i < normalArray.length; i++) {
-// 				reversedArray[i] = normalArray[normalArray.length -1 - i];
-// 			};
-// 			return reversedArray;
-// 		}	
-// 	} else {
-// 		console.log("This array has no elements");
-// 	}	
-// }
+transformObject(person);
 
-// var myArray = [33, 11, 56, 78, 23];
-// var someReversedArray = reverseArray(myArray);
-// console.log("The reversed array:");
-// console.log(someReversedArray);
+// TASK 2
+console.log("TASK 2");
 
-// // TASK 2
-// console.log("TASK 2")
+var person = {
+	name: "Jack",
+	age: 32,
+	married: true
+}
 
-// var printType = function(something) {
-// 	console.log("This element is " + typeof something);
-// };
+var children = function(someObject) {
+	if (!someObject.children) {
+		someObject.children = [
+			{ name: "Mario",
+			  age: 23,
+			  gender: "male"
+			},
+			{
+			  name: "Sonia",
+			  age: 34,
+			  gender: "female"	
+			}
+		];
+	}
+}
 
-// printType(myArray);
-// printType(33);
-// printType("Peter");
+children(person);
+console.log(person);
 
-// // TASK 3
-// console.log("TASK 3");
+// TASK 3
+console.log("TASK 3");
 
-// var theLongest = function(someStringArray) {
-// 	if (someStringArray.length) {
-// 		var theLongestString = someStringArray[0].length;
-// 		for (var i = 1; i < someStringArray.length; i++) {
-// 			if (someStringArray[i].length > theLongestString) {
-// 				theLongestString = someStringArray[i].length;
-// 			};
-// 		};
-// 		return theLongestString;
-// 	} else {
-// 		console.log("This array has no elements");
-// 	}	
-// };
+var students = [ 
+   {
+       name: 'Mike',
+       age: 28,
+       passed: false
+   },
+   {
+       name: 'Anna',
+       age: 23,
+       passed: true
+   },
+   {
+       name: 'Jack',
+       age: 32,
+       passed: true
+   }
+];
 
-// var stringArray = ["John", "Leo", "Peter", "Jonatan", "Tom", "Alex"];
-// var theLongestInArray = theLongest(stringArray);
-// console.log("The longest string in array has " + theLongestInArray + " characters.");
+var passedExam = function(someObject){
+	for (var i = 0; i < students.length; i++) {
+		if (students[i].passed) {
+			console.log(students[i].name + " passed the exam");
+		} else {
+			console.log(students[i].name + " didn't pass the exam");
+		}
+	}
+}
 
-// // TASK 4
-// console.log("TASK 4")
+passedExam(students);
 
-// var numberArray = [33,12,44,56,21,46,3,5,11];
+// TASK 4
+console.log("TASK 4");
 
-// // method 1 - I've made two separate functions and merged into one main
-// console.log("method 1");
+var students = [ 
+   {
+       name: 'Mike',
+       age: 28,
+       passed: false
+   },
+   {
+       name: 'Anna',
+       age: 23,
+       passed: true
+   },
+   {
+       name: 'Jack',
+       age: 32,
+       passed: true
+   }
+];
 
-// var secondGreatest = function(someNumberArray){
-// 	if(someNumberArray.length > 1){
-// 		var first,second;
-// 		first = second = someNumberArray[0];
-// 		for (var i = 0; i < someNumberArray.length; i++) {
-// 			if (someNumberArray[i] > first) {
-// 				second = first;
-// 				first = someNumberArray[i];
-// 			} else if (someNumberArray[i] > second && someNumberArray[i] !== first) {
-// 				second = someNumberArray[i];
-// 			}
-// 		}
-// 		console.log("The second greatest number in array is " + second);
-// 	} else {
-// 		console.log("This array has less than two elements");
-// 	}
-	
-// }
+var repack = function(someObject){
+	var names = [], ages = [], passed = [];
+	for (var i = 0; i < students.length; i++) {
+		names[i] = students[i].name;
+		ages[i] = students[i].age;
+		passed[i] = students[i].passed;
+	}
 
-// var secondLowest = function(someNumberArray){
-// 	if(someNumberArray.length > 1){
-// 		var first,second;
-// 		first = second = someNumberArray[0];
-// 		for (var i = 0; i < someNumberArray.length; i++) {
-// 			if (someNumberArray[i] < first) {
-// 				second = first;
-// 				first = someNumberArray[i];
-// 			} else if (someNumberArray[i] < second && someNumberArray[i] !== first) {
-// 				second = someNumberArray[i];
-// 			}
-// 		}
-// 		console.log("The second lowest number in array is " + second);	
-// 	} else {
-// 		console.log("This array has less than two elements");
-// 	}	
-// }
+	someObject[0] = names;
+	someObject[1] = ages;
+	someObject[2] = passed;
+}
 
-// var secondNumbers = function(someNumberArray) {
-// 	secondGreatest(someNumberArray);
-// 	secondLowest(someNumberArray);
-// }
+repack(students);
+console.log(students);
 
-// secondNumbers(numberArray);
+// TASK 5
+console.log("TASK 5");
 
-// // method 2 - more simple but more iterations
-// console.log("method 2");
+var person = {
+	name: "Jack",
+	age: 32,
+	married: true
+};
 
-// var mySecondNumbers = function(someArray){
-// 	/* making new array that has elements like received array */
-// 	if (someArray.length > 1) {  
-// 		var myNewArray = [];
-// 		for (var i = 0; i < someArray.length; i++) {
-// 			myNewArray[i] = someArray[i];
-// 		}
-// 		/* simply sorting array */
-// 		for (var i = 0; i < myNewArray.length; i++) {  
-// 			for (var j = 0; j < myNewArray.length - 1; j++) {
-// 				if (myNewArray[j] > myNewArray[j + 1]) {
-// 					var temp = myNewArray[j + 1];
-// 					myNewArray[j + 1] = myNewArray[j];
-// 					myNewArray[j] = temp;
-// 				}
-// 			}
-// 		} 
-// 		/* and console.log the second greatest and the second lowest */  
-// 		console.log("The second greatest number is " + myNewArray[myNewArray.length - 2]);
-// 		console.log("The second lowest number is " + myNewArray[1]);	
-// 	}	
-// }
+var newPerson = Object.create(person);
 
-// mySecondNumbers(numberArray);
+console.log(newPerson.age);
 
-// // TASK 5
-// console.log("TASK 5");
-
-// var bigger = function(someArray, someNumber) {
-// 	if (someArray.length) {
-// 		var j = 0;
-// 		var biggerArray = [];
-// 		for (var i = 0; i < someArray.length; i++) {
-// 			if (someArray[i] > someNumber) {
-// 				biggerArray[j] = someArray[i];
-// 				j++;
-// 			}
-// 		}
-// 		console.log("New array is:")
-// 		console.log(biggerArray);	
-// 	}
-// }
-
-// var biggerThen = function(someArray, someNumber){
-// 	bigger(someArray, someNumber);
-// }
-
-// var myNumber = 15;
-
-// biggerThen(numberArray, myNumber);
 
 // TASK 6
-console.log("TASK 6")
+console.log("TASK 6");
 
-var numberArray = [33,12,44,56,21,46,3,5,11];
-
-var theLowestNumberInArray = function(someArray) {
-	var theLowest = someArray[0];
-	for (var i = 0; i < someArray.length; i++) {
-		if (someArray[i] < theLowest) {
-			theLowest = someArray[i];
-		} 
-	}
-	return theLowest;
+var person = {
+	name: "Mike",
+	age: 28,
+	married: true
 }
 
-var theHighestNumberInArray = function(someArray) {
-	var theHighest = someArray[0];
-	for (var i = 0; i < someArray.length; i++) {
-		if (someArray[i] > theHighest) {
-			theHighest = someArray[i];
-		} 
-	}
-	return theHighest;
-}
+person.print = function(){
+		console.log(this.name + " has " + this.age + " years.");
+	};
 
-var multipleHighestAndLowest = function(someArray) {
-	var theHighest = theHighestNumberInArray(someArray);
-	var theLowest = theLowestNumberInArray(someArray);
-	var multipleNumbers = theHighest * theLowest;
-	console.log("The product of highest and lowest number is: " + multipleNumbers);
-}
-
-multipleHighestAndLowest(numberArray);
+person.print();
 
 // TASK 7
 console.log("TASK 7");
 
-var arrayOfNumbers = [15,35,46,23,15,17,23,24,35,12,72,64,35,22,64];
+var person = {};
 
-var copyElements = function(someArray, newArray){
-	for (var i = 0; i < someArray.length; i++) { 
-		newArray[i] = someArray[i];
-	}
-}
+person.addData = function(name, age, married){
+		this.name = name;
+		this.age = age;
+		this.married = married;
+	};
 
-var sortElements = function(someArray){
-	for (var i = 0; i < someArray.length; i++) { 
-		for (var j = 0; j < someArray.length - 1; j++) {
-			if (someArray[j] > someArray[j + 1]) {
-				var temp = someArray[j + 1];
-				someArray[j + 1] = someArray[j];
-				someArray[j] = temp;
-			}
-		}
-	}
-}
-
-var uniqueArray = function(someArray, onlyUniqueElementsArray){ 
-	var k = 0;	        
-	for (var i = 0; i < someArray.length; i++) {
-		if (someArray[i] !== someArray[i - 1] && someArray[i] !== someArray[i + 1]) {
-			onlyUniqueElementsArray[k] = someArray[i];
-			k++;
-		}
-	}
-}
-
-// in the main function i will already sort the array in ascending order so the biggest will be the last
-var deleteBiggest = function(someUniqueArray){
-	someUniqueArray.length = someUniqueArray.length - 1;
-}
-
-var findUnique = function(someArray, someFunction){
-		if (someArray.length > 1) {
-			var myNewArray = [];
-			var finalArray = [];
-
-			/* copying elements in new array */
-
-			copyElements(someArray, myNewArray);
-
-			/* sorting array */
-
-			sortElements(myNewArray);
-			console.log("Ordered array ");	
-			console.log(myNewArray);
-
-			/* creating array of unique elements */
-			
-			uniqueArray(myNewArray, finalArray);
-		
-			console.log("Uniqe elements: ");
-			console.log(finalArray);
-
-			someFunction(finalArray);
-			console.log("Deleted biggest: ");
-			console.log(finalArray);
-	}	
-}
-
-findUnique(arrayOfNumbers, deleteBiggest);
+person.addData("Peter", 23, true);
+console.log(person);
