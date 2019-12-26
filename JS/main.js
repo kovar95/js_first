@@ -1,228 +1,176 @@
-// js-array-funkcije-objekti-domaci
-console.log("js-array-funkcije-objekti-domaci");
 
 // TASK 1
 console.log("TASK 1");
 
-var myArray = [
-	[[1],[2],[3]],
-	[[4],[5],[6]],
-	[[7],[8],[9]]
-];
-
-for (var i = 0; i < myArray.length; i++) {
-	for (var j = 0; j < myArray[i].length; j++) {
-		console.log("At position " + i + ", subposition " + j + ", value is " + myArray[i][j][0]);
-	}
+function Student(name, lastName, age, averageGrade) {
+	this.name = name;
+	this.lastName = lastName;
+	this.age = age;
+	this.averageGrade = averageGrade;
 }
+
+var peter = new Student("Peter", "Smith", 21, 8.45);
+var mike = new Student("Michael", "Johanson", 20, 9.40);
+var ricky = new Student("Richmond", "Green", 19, 7.67);
+console.log(peter, mike, ricky);
 
 // TASK 2
 console.log("TASK 2");
 
-Object.prototype.nameAge = function() {
-	console.log("I am " + this.name + ", and I have " + this.age + " years.");
+function Player(name, age, goals, yellowCards) {
+	this.name = name;
+	this.age = age;
+	this.goals = goals;
+	this.yellowCards = yellowCards;
 }
 
-var students = [
-	{
-		name: "Jack",
-		age: 32
-	}, 
-	{
-		name: "Tom",
-		age: 30
-	}, 
-	{
-		name: "Peter",
-		age: 21
-	}
-];
-
-for (var i = 0; i < students.length; i++) {
-	students[i].nameAge();
-}
-
-// js-array-funkcije-objekti-vezbanje
-console.log("js-array-funkcije-objekti-vezbanje");
-
-// TASK 1
-console.log("TASK 1");
-
-// WAY 1
-console.log("WAY 1");
-
-var someData = {
-	name: "Peter",
-	lastName: "Dinklage",
-	status: "married"
-};
-
-var repackObject = function(someObject) {
-	var newObject = {};
-	for (var i = 0; i < Object.keys(someObject).length; i++) {
-		newObject[someData[Object.keys(someData)[i]]] = someData[Object.keys(someData)[i]];
-	}
-	return newObject;
-}
-
-var repackedObject = repackObject(someData);
-console.log("New object:")
-console.log(repackedObject);
-
-// WAY 2
-console.log("WAY 2");
-
-var someData = {
-	name: "Peter",
-	lastName: "Dinklage",
-	status: "married"
-};
-
-var repackMe = function(someObject) {
-	var newObject = {};
-	for (var eachProperty in someObject) {
-		if (someObject.hasOwnProperty(eachProperty)) {
-			newObject[someData[eachProperty]] = someData[eachProperty];
-		}
-	}
-	return newObject;
-}
-
-var repackedObject = repackMe(someData);
-console.log("New object:")
-console.log(repackedObject);
-
-// TASK 2
-console.log("TASK 2");
-
-var someData = [13, 45, 56, [32, 11], 27, [55, 92]];
-
-var makeArray = function(someArray) {
-	var newArray = [];
-	for (var i = 0; i < someArray.length; i++) {
-		newArray = newArray.concat(someArray[i]);
-	}
-	return newArray;
-}
-
-var singleElementsArray = makeArray(someData);
-console.log("New array:")
-console.log(singleElementsArray);
+var neca = new Player("Nemanja Vidic", 37, 93, 54);
+var michael = new Player("Michael Ballack", 41, 144, 76);
+var ron = new Player("Christiano Ronaldo", 34, 311, 63);
+console.log(neca, michael, ron);
 
 // TASK 3
 console.log("TASK 3");
 
-var someData = [13, 45, 56, [32, 11], 27, [55, 92]];
+var players = [
+	["Nemanja Vidic", 37, 93, 54], 
+	["Michael Ballack", 41, 144, 76], 
+	["Christiano Ronaldo", 34, 311, 63]
+];
 
-var joinArrays = function(arrayOne, arrayTwo) {
-	arrayOne = arrayOne.concat(arrayTwo);
-	return arrayOne;
+function footballPlayers(player){
+	this.name = player[0];
+	this.age = player[1];
+	this.goals = player[2];
+	this.yellowCards = player[3];
 }
 
-var justSubarrays = function(someArray) {
-	var newArray = [];
-	for (var i = 0; i < someArray.length; i++) {
-		if(Array.isArray(someArray[i])){
-			newArray = joinArrays(newArray, someArray[i]);
-		}
-	}
-	return newArray;
+for (var i = 0; i < players.length; i++) {
+	this[players[i][0].toLowerCase()] = new footballPlayers(players[i]);
+	// adding console.log just so see result
+	console.log(this[players[i][0].toLowerCase()]);
 }
-
-var mySubarrays = justSubarrays(someData);
-console.log("New array:")
-console.log(mySubarrays);
-
 
 // TASK 4
 console.log("TASK 4");
 
-// way 0ne
-console.log("WAY ONE");
-// if we want to return anonimus function directly from main function, 
-// we can use someObject there, because someObject is in main function scope
-
-var someData = {
-	name: "Peter",
-	lastName: "Dinklage",
-	status: "married"
-};
-
-var checkName = function(someObject) {
-	if (someObject.name) {
-		return function(){
-			delete someObject.name;
+function numberOperation(firstNumber, secondNumber, method) {
+	this.firstNumber = firstNumber;
+	this.secondNumber = secondNumber;
+	switch(method){
+		case "add" : this.operation = function(){
+			return this.firstNumber + this.secondNumber;
 		}
-	} else {
-		return function(someName){
-			someObject.name = someName;
+		break;
+		case "subtract" : this.operation = function(){
+			return this.firstNumber - this.secondNumber;
 		}
+		break;
+		case "multiply" : this.operation = function(){
+			return this.firstNumber * this.secondNumber;
+		}
+		break;
+		case "divide" : this.operation = function(){
+			return this.firstNumber / this.secondNumber;
+		}
+		break;
+		default : break;
 	}
 }
 
-// this is good way but we don't need to use and return function here, just simply
-// add or delete property
-
-var myName = "Stefan";
-checkName(someData)(myName);
-console.log("New object:")
-console.log(someData);
-
-// way Two
-console.log("WAY TWO");
-// if we want to return and call some external function, we must pass parameters 
-// for that external function
-
-var someData = {
-	name: "Peter",
-	lastName: "Dinklage",
-	status: "married"
-};
-
-var removeName = function(myObject) {
-	delete myObject.name;
-}
-
-var addName = function(myObject, myName) {
-	myObject.name = myName;
-}
-
-var checkingName = function(someObject) {
-	if (someObject.name) {
-		return removeName;
-	} else {
-		return addName;
-	}
-}
-
-checkingName(someData)(someData, myName);
-console.log("New object:")
-console.log(someData);
+var firstCase = new numberOperation(31,22,"multiply");
+console.log(firstCase.operation());
+var secondCase = new numberOperation(22,11,"divide");
+console.log(secondCase.operation());
+var thirdCase = new numberOperation(55,33,"add");
+console.log(thirdCase.operation());
+var fourthCase = new numberOperation(67,44,"subtract");
+console.log(fourthCase.operation());
 
 // TASK 5
 console.log("TASK 5");
 
-var someData = {
-	name: "Peter",
-	lastName: "Dinklage",
-	status: "married"
-};
+// QUESTION 1:
 
-someData.checkName = function() {
-	if (this.name) {
-		var name = this.name;   /* BONUS */
-		this.removeName = function(){
-			delete this.name;
-			console.log(this);
-			this.addName = function(){
-				// this.name = "Mike";
-				this.name = name;  /* BONUS */
-				console.log(this);
-			};
-			this.addName();
-		};
-		this.removeName();
-	}
-}
+// 	What’s the result of executing this code and why?
 
-someData.checkName();
+		// function test() {
+		//    console.log(a);
+		//    console.log(foo());
+		   
+		//    var a = 1;
+		//    function foo() {
+		//       return 2;
+		//    }
+		// }
+
+		// test();
+
+// First will be console.logged undefined because "a" is declared after console.log,
+// and second will be displayed "2" because we can call function before it was declared 
+// if function is not declared as variable
+
+// QUESTION 2:
+
+// 	What is result?
+
+		// var a = 1; 
+
+		// function someFunction(number) {
+		//   function otherFunction(input) {
+		//     return a;
+		//   }
+		  
+		//   a = 5;
+		  
+		//   return otherFunction;
+		// }
+
+		// var firstResult = someFunction(9);
+		// var result = firstResult(2);
+
+// Result is "5", because it's closure. Function otherFunction still has access to 
+// variable "a" inside someFunction where value 5 has been assigned to variable "a"
+
+// QUESTION 3:
+
+// 	What is the result of the following code? Explain your answer.
+
+		// var fullname = 'John Doe';
+		// var obj = {
+		//    fullname: 'Colin Ihrig',
+		//    prop: {
+		//       fullname: 'Aurelio De Rosa',
+		//       getFullname: function() {
+		//          return this.fullname;
+		//       }
+		//    }
+		// };
+
+		// console.log(obj.prop.getFullname());
+
+		// var test = obj.prop.getFullname;
+
+		// console.log(test());
+
+// In the first console.log will be displayed 'Aurelio De Rosa' because "this" refers
+// to object obj.prop which has property "fullname". In the second case, variable test
+// is declared as some function, and when it's called, "this" refers to global window 
+// object which has property "fullname" with value of 'John Doe'.
+
+// QUESTION 4:
+
+// 	What will you see in the console for the following example?
+
+		// var a = 1; 
+		// function b() { 
+		//     a = 10; 
+		//     return; 
+		//     function a() {} 
+		// } 
+		// b(); 
+		// console.log(a);
+
+// It will be seen just "1" in console. Function "b" does not return anything, and
+// function "a" is declared inside function "b" and does nothing and does not have
+// any impact outside the function "b". So, we just have variable "a" with value of 1.
