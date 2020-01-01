@@ -2,175 +2,252 @@
 // TASK 1
 console.log("TASK 1");
 
-function Student(name, lastName, age, averageGrade) {
-	this.name = name;
-	this.lastName = lastName;
-	this.age = age;
-	this.averageGrade = averageGrade;
+var myString = "Lorem ipsum dolor sit amet";
+
+function lower(someString) {
+	return someString.toLowerCase();
 }
 
-var peter = new Student("Peter", "Smith", 21, 8.45);
-var mike = new Student("Michael", "Johanson", 20, 9.40);
-var ricky = new Student("Richmond", "Green", 19, 7.67);
-console.log(peter, mike, ricky);
+myString = lower(myString);
+
+console.log(myString);
 
 // TASK 2
 console.log("TASK 2");
 
-function Player(name, age, goals, yellowCards) {
-	this.name = name;
-	this.age = age;
-	this.goals = goals;
-	this.yellowCards = yellowCards;
+var myWord = "sit";
+
+function checkWord(someString, someWord) {
+	if (someString.toLowerCase().includes(someWord.toLowerCase())) {
+		console.log("The word -> " + someWord + " <- exists in this string.");
+	} else {
+		console.log("The word -> " + someWord + " <- doesn't exist in this string.");
+	}
 }
 
-var neca = new Player("Nemanja Vidic", 37, 93, 54);
-var michael = new Player("Michael Ballack", 41, 144, 76);
-var ron = new Player("Christiano Ronaldo", 34, 311, 63);
-console.log(neca, michael, ron);
+checkWord(myString, myWord);
 
 // TASK 3
 console.log("TASK 3");
 
-var players = [
-	["Nemanja Vidic", 37, 93, 54], 
-	["Michael Ballack", 41, 144, 76], 
-	["Christiano Ronaldo", 34, 311, 63]
-];
+// WAY ONE
 
-function footballPlayers(player){
-	this.name = player[0];
-	this.age = player[1];
-	this.goals = player[2];
-	this.yellowCards = player[3];
+// this works just fine, but the problem is when the last character is not a  
+// letter but some sign, empty space or sth that isn't letter
+
+function lastIndex(someString) {
+	return someString.length - 1;
 }
 
-for (var i = 0; i < players.length; i++) {
-	this[players[i][0].toLowerCase()] = new footballPlayers(players[i]);
-	// adding console.log just so see result
-	console.log(this[players[i][0].toLowerCase()]);
+// WAY TWO
+
+// this function solves the problem, starting backward, checks if the last char is
+// letter, and if isn't, moves backwards looking for the last letter 
+
+function lastLetter(someString) {
+	var i = someString.length -1;
+	while(someString[i].toLowerCase() === someString[i].toUpperCase()){
+		// this will be false for letter, but true for sign
+		i--;
+	}
+	return i;
 }
+
+var theLastIndex = lastIndex(myString);
+var theLastLetter = lastLetter(myString);
+
+// try to add some sign to the and of myString to see the difference
+
+console.log(theLastIndex, theLastLetter);
 
 // TASK 4
 console.log("TASK 4");
 
-function numberOperation(firstNumber, secondNumber, method) {
-	this.firstNumber = firstNumber;
-	this.secondNumber = secondNumber;
-	switch(method){
-		case "add" : this.operation = function(){
-			return this.firstNumber + this.secondNumber;
-		}
-		break;
-		case "subtract" : this.operation = function(){
-			return this.firstNumber - this.secondNumber;
-		}
-		break;
-		case "multiply" : this.operation = function(){
-			return this.firstNumber * this.secondNumber;
-		}
-		break;
-		case "divide" : this.operation = function(){
-			return this.firstNumber / this.secondNumber;
-		}
-		break;
-		default : break;
-	}
+function splitString(someString) {
+	return someString.split(" ", 3);
 }
 
-var firstCase = new numberOperation(31,22,"multiply");
-console.log(firstCase.operation());
-var secondCase = new numberOperation(22,11,"divide");
-console.log(secondCase.operation());
-var thirdCase = new numberOperation(55,33,"add");
-console.log(thirdCase.operation());
-var fourthCase = new numberOperation(67,44,"subtract");
-console.log(fourthCase.operation());
+var mySplitString = splitString(myString);
+
+console.log(mySplitString);
 
 // TASK 5
 console.log("TASK 5");
 
-// QUESTION 1:
+var exampleString = "Piter is an actor.";
 
-// 	What’s the result of executing this code and why?
+var firstLetter = "e";
+var secondLetter = "o";
 
-		// function test() {
-		//    console.log(a);
-		//    console.log(foo());
-		   
-		//    var a = 1;
-		//    function foo() {
-		//       return 2;
-		//    }
-		// }
+// WAY ONE
+console.log("WAY ONE");
 
-		// test();
+// the simpliest way, but just because we know where letters in sentence are
+// "o" is after "e", so we can use this function
 
-// First will be console.logged undefined because "a" is declared after console.log,
-// and second will be displayed "2" because we can call function before it was declared 
-// if function is not declared as variable
+function simpleReplace(someString, letterOne, letterTwo) {
+	someString = someString.replace(letterTwo,letterOne);
+	someString = someString.replace(letterOne, letterTwo);
+	return someString;
+}
 
-// QUESTION 2:
+exampleString = simpleReplace(exampleString, firstLetter, secondLetter);
 
-// 	What is result?
+console.log(exampleString);
 
-		// var a = 1; 
+// WAY TWO
+console.log("WAY TWO");
 
-		// function someFunction(number) {
-		//   function otherFunction(input) {
-		//     return a;
-		//   }
-		  
-		//   a = 5;
-		  
-		//   return otherFunction;
-		// }
+// we don't have to know where are letters in sentence, problem above solved
 
-		// var firstResult = someFunction(9);
-		// var result = firstResult(2);
+function replaceLetter(someString, letterOne, letterTwo) {
+	var temp = "#XY3^&";
+	someString = someString.replace(letterOne, temp);
+	someString = someString.replace(letterTwo, letterOne);
+	someString = someString.replace(temp, letterTwo);
+	return someString;
+}
 
-// Result is "5", because it's closure. Function otherFunction still has access to 
-// variable "a" inside someFunction where value 5 has been assigned to variable "a"
+var exampleString = "Piter is an actor.";
 
-// QUESTION 3:
+exampleString = replaceLetter(exampleString, firstLetter, secondLetter);
 
-// 	What is the result of the following code? Explain your answer.
+console.log(exampleString);
 
-		// var fullname = 'John Doe';
-		// var obj = {
-		//    fullname: 'Colin Ihrig',
-		//    prop: {
-		//       fullname: 'Aurelio De Rosa',
-		//       getFullname: function() {
-		//          return this.fullname;
-		//       }
-		//    }
-		// };
+// WAY THREE
+console.log("WAY THREE");
 
-		// console.log(obj.prop.getFullname());
+// the most complicated way, but I think the best. transform string to array, 
+// find letter, replace it, and put it back together to string. this will work
+// with all letters in string, no matter how many times it appears in string,
+// instead of just on first appearance of letter in string - what we had in 
+// first and second WAY
 
-		// var test = obj.prop.getFullname;
+function replaceSomeLetter(someString, letterOne, letterTwo) {
+	someString = someString.split("");
+	someString = someString.map(function(element){
+		if(element === letterOne) 
+			return element = letterTwo;
+		 else if (element === letterTwo) 
+		 	return element = letterOne;
+		 else return element
+		});
+	someString = someString.join("");
+	return someString;
+}
 
-		// console.log(test());
+var exampleString = "Piter is an actor and this is one end.";
 
-// In the first console.log will be displayed 'Aurelio De Rosa' because "this" refers
-// to object obj.prop which has property "fullname". In the second case, variable test
-// is declared as some function, and when it's called, "this" refers to global window 
-// object which has property "fullname" with value of 'John Doe'.
+exampleString = replaceSomeLetter(exampleString, firstLetter, secondLetter);
 
-// QUESTION 4:
+console.log(exampleString);
 
-// 	What will you see in the console for the following example?
+// TASK 6
+console.log("TASK 6");
 
-		// var a = 1; 
-		// function b() { 
-		//     a = 10; 
-		//     return; 
-		//     function a() {} 
-		// } 
-		// b(); 
-		// console.log(a);
+// WAY ONE
+console.log("WAY ONE");
 
-// It will be seen just "1" in console. Function "b" does not return anything, and
-// function "a" is declared inside function "b" and does nothing and does not have
-// any impact outside the function "b". So, we just have variable "a" with value of 1.
+var someData = [34, 23, 14, 56, 23, 44, 65];
+
+var myNumber = 56;
+
+function dataWithout(someArray, someNumber) {
+	someArray = someArray.filter(function(element){
+		return element !== someNumber;
+	});
+	return someArray;
+}
+
+someData = dataWithout(someData, myNumber);
+
+console.log(someData);
+
+// WAY TWO
+console.log("WAY TWO");
+
+var someData = [34, 23, 14, 56, 23, 44, 65];
+
+var myNumber = 56;
+
+function deleteItem(someArray, someNumber) {
+	var indexOfNumber = someArray.indexOf(someNumber);
+	someArray.splice(indexOfNumber,1);
+	return someArray;
+}
+
+someData = deleteItem(someData, myNumber);
+
+console.log(someData);
+
+// TASK 7
+console.log("TASK 7");
+
+var someData = [34, 23, 14, 56, 23, 44, 65];
+
+function makeMyArray(someArray) {
+	var arrayOne = someArray.slice(1,4);
+	var arrayTwo = someArray.slice(4,7).reverse();
+	arrayOne = arrayOne.concat(arrayTwo);
+	return arrayOne;
+}
+
+var otherData = makeMyArray(someData);
+
+console.log(otherData);
+
+// TASK 8
+console.log("TASK 8");
+
+var someData = [334, 233, 212, 199, 154, 122];
+
+function reduceArray(someArray) {
+	var otherArray = someArray.map(function(element){
+		if (someArray.indexOf(element) !== 0) {
+			return element - someArray[someArray.indexOf(element)-1];
+		} else return element;
+	});
+	return otherArray;
+}
+
+var myNewArray = reduceArray(someData);
+
+console.log(someData, myNewArray);
+
+// TASK 9
+console.log("TASK 9");
+
+var students = [
+  {
+     name: "Jim",
+     avgGrade: 8.5556
+  },
+  {
+     name: "Mike",
+     avgGrade: 8.5492
+  },
+  {
+     name: "Anna",
+     avgGrade: 8.9322
+  },
+  {
+     name: "Jack",
+     avgGrade: 8.6111
+  }
+];
+
+var grade = 8.5;
+
+function bestStudents(someArray, someGrade) {
+	var newArray = someArray.filter(function(element){
+		return element.avgGrade > someGrade;
+	});
+	newArray.forEach(function(element) {
+		element.avgGrade = element.avgGrade.toFixed(2);
+	});
+	return newArray;
+}
+
+var theBest = bestStudents(students, grade);
+
+console.log(theBest);
