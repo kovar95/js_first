@@ -251,3 +251,71 @@ function bestStudents(someArray, someGrade) {
 var theBest = bestStudents(students, grade);
 
 console.log(theBest);
+
+
+
+
+
+// google job task
+// find the longest substring in two strings
+
+console.log("TASK google");
+
+// find the longest substring of pairs given below
+
+var str1 = "ABAEDC";
+var str2 = "BACBAD";
+
+var str3 = "AGGTAB";
+var str4 = "GXTXAYB";
+
+var str5 = "aa";
+var str6 = "aaaa";
+
+function oneOfSubs(someArray1, someArray2, someNumber){
+	var myStringArray = [];
+	var k = 0, l = -1;
+	for (var i = someNumber; i < someArray1.length; i++) {
+		for (var j = 0; j < someArray2.length; j++) {
+			if (someArray1[i] === someArray2[j] && j > l) {
+				myStringArray[k] = someArray1[i];
+				k++;
+				l = j;
+				break;
+			}
+		}
+	}
+	return myStringArray;
+}
+
+function theSub(someString1, someString2){
+	var arrayOne = someString1.split("");
+	var arrayTwo = someString2.split("");
+
+	console.log("The longest substring of these two arrays: " + arrayOne + " - " + arrayTwo + " is:");
+
+	var outputArray = [];
+
+	for (var i = 0; i < arrayOne.length; i++) {
+		outputArray[i] = oneOfSubs(arrayOne, arrayTwo, i);
+	}
+	
+	var max = -Infinity;
+	var index = -1;
+	outputArray.forEach(function(a, i){
+	  if (a.length > max) {
+	    max = a.length;
+	    index = i;
+	  }
+	});
+
+	var someOtherString = outputArray.join();
+	console.log(outputArray[index]);
+}
+
+theSub(str1, str2);
+theSub(str3, str4);
+theSub(str6, str5);
+
+
+
